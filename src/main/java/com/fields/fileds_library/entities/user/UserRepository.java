@@ -1,6 +1,5 @@
-package com.fields.fileds_library.objects.user;
+package com.fields.fileds_library.entities.user;
 
-import jdk.jfr.Registered;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

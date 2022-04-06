@@ -1,7 +1,8 @@
-package com.fields.fileds_library.objects.company;
+package com.fields.fileds_library.entities.company;
 
 import com.fields.fileds_library.exceptions.CompanyNotFoundException;
 import com.fields.fileds_library.model.CompanyDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,15 +11,17 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CompanyServiceImpl implements CompanyService{
 
-    CompanyRepository companyRepository;
+    private final CompanyRepository companyRepository;
 
     @Override
     public CompanyDto createCompany(CompanyDto companyDto) {
         Company.CompanyBuilder companyBuilder = new Company.CompanyBuilder();
         Company company = companyBuilder.companyName(companyDto.getCompanyName())
                 .build();
+        companyRepository.save(company);
         return companyRepository.save(company).toDto();
     }
 
@@ -29,7 +32,7 @@ public class CompanyServiceImpl implements CompanyService{
 
     @Override
     public List<CompanyDto> findAllCompanies(String companyName) {
-        return companyRepository.findAllByCompanyName(companyName).stream()
+        return companyRepository.findAll().stream()
                 .map(Company::toDto)
                 .collect(Collectors.toList());
     }

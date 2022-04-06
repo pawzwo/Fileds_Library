@@ -1,4 +1,4 @@
-package com.fields.fileds_library.objects.concession;
+package com.fields.fileds_library.entities.concession;
 
 import com.fields.fileds_library.api.ConcessionsApi;
 import com.fields.fileds_library.exceptions.ConcessionNotFoundException;
@@ -27,11 +27,10 @@ public class ConcessionController implements ConcessionsApi {
         return ResponseEntity.ok().build();
     }
 
-//    @Override
-//    //ToDo
-//    public ResponseEntity<List<ConcessionDto>> findAllConcessions(String companyName, String concessionName) {
-//        return ConcessionsApi.super.findAllConcessions(companyName, concessionName);
-//    }
+    @Override
+    public ResponseEntity<List<ConcessionDto>> findAllConcessions(String companyName) {
+        return ResponseEntity.ok(concessionService.findAllConcession(companyName));
+    }
 
     @Override
     public ResponseEntity<ConcessionDto> findConcessionById(UUID id) {

@@ -1,11 +1,8 @@
-package com.fields.fileds_library.objects.field;
+package com.fields.fileds_library.entities.field;
 
-import com.fields.fileds_library.model.ConcessionDto;
 import com.fields.fileds_library.model.FieldDto;
 import com.fields.fileds_library.model.HCtype;
-import com.fields.fileds_library.objects.ProtoEntity;
-import com.fields.fileds_library.objects.company.Company;
-import com.fields.fileds_library.objects.concession.Concession;
+import com.fields.fileds_library.entities.ProtoEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

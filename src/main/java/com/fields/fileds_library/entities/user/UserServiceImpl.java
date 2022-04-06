@@ -1,4 +1,4 @@
-package com.fields.fileds_library.objects.user;
+package com.fields.fileds_library.entities.user;
 
 import com.fields.fileds_library.exceptions.UserNotFoundException;
 import com.fields.fileds_library.model.UserDto;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public UserDto createUser(UserDto userDto) {

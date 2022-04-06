@@ -1,7 +1,6 @@
-package com.fields.fileds_library.objects.concession;
+package com.fields.fileds_library.entities.concession;
 
 import com.fields.fileds_library.model.ConcessionDto;
-import com.fields.fileds_library.model.CompanyDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +12,7 @@ public interface ConcessionService {
 
     void deleteConcession(UUID id);
 
-//    List<ConcessionDto> findAllConcession(String companyName);
+    List<ConcessionDto> findAllConcession(String companyName);
 
     Optional<ConcessionDto> findConcessionById(UUID id);
 

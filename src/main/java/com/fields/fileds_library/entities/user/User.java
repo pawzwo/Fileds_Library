@@ -1,10 +1,8 @@
-package com.fields.fileds_library.objects.user;
+package com.fields.fileds_library.entities.user;
 
-import com.fields.fileds_library.model.FieldDto;
 import com.fields.fileds_library.model.Role;
 import com.fields.fileds_library.model.UserDto;
-import com.fields.fileds_library.objects.ProtoEntity;
-import com.fields.fileds_library.objects.field.Field;
+import com.fields.fileds_library.entities.ProtoEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

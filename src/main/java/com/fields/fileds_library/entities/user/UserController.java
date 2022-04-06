@@ -1,4 +1,4 @@
-package com.fields.fileds_library.objects.user;
+package com.fields.fileds_library.entities.user;
 
 import com.fields.fileds_library.api.UsersApi;
 import com.fields.fileds_library.exceptions.UserNotFoundException;
@@ -14,7 +14,7 @@ import java.util.UUID;
 @RestController
 public class UserController implements UsersApi {
 
-    UserService userService;
+    private final UserService userService;
 
     @Override
     public ResponseEntity<UserDto> createUser(UserDto userDto) {

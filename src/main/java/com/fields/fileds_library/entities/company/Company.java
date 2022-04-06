@@ -1,26 +1,23 @@
-package com.fields.fileds_library.objects.company;
+package com.fields.fileds_library.entities.company;
 
 
 import com.fields.fileds_library.model.CompanyDto;
-import com.fields.fileds_library.objects.ProtoEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.fields.fileds_library.entities.ProtoEntity;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "concessions")
+@Table(name = "owner")
 @Getter
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
+@ToString
 public class Company extends ProtoEntity {
 
     private String companyName;
-
 
     public Company updateCompany(CompanyDto companyDto) {
         this.companyName=companyDto.getCompanyName();

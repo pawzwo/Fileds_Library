@@ -1,4 +1,4 @@
-package com.fields.fileds_library.objects.field;
+package com.fields.fileds_library.entities.field;
 
 
 import com.fields.fileds_library.exceptions.FieldNotFoundException;
@@ -10,12 +10,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class FieldServiceImpl implements FieldService{
 
-    FieldsRepository fieldsRepository;
+    private final FieldRepository fieldRepository;
 
     @Override
     public FieldDto createField(FieldDto fieldDto) {
@@ -27,28 +28,30 @@ public class FieldServiceImpl implements FieldService{
                 .reservesGas(fieldDto.getReservesGas())
                 .reservesCondensate(fieldDto.getReservesCondensate())
                 .build();
-        return fieldsRepository.save(field).toDto();
+        return fieldRepository.save(field).toDto();
     }
 
     @Override
     public void deleteField(UUID id) {
-        fieldsRepository.delete(fieldsRepository.findById(id).orElseThrow(FieldNotFoundException::new));
+        fieldRepository.delete(fieldRepository.findById(id).orElseThrow(FieldNotFoundException::new));
     }
 
     @Override
     public List<FieldDto> findAllFields(HCtype hydrocarbons) {
-        return null;
+        return fieldRepository.findAllFields(hydrocarbons).stream()
+                .map(Field::toDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     public Optional<FieldDto> findFieldById(UUID id) {
-        return fieldsRepository.findById(id).map(Field::toDto);
+        return fieldRepository.findById(id).map(Field::toDto);
     }
 
     @Override
     public FieldDto updateField(UUID id, FieldDto fieldDto) {
-        Field field = fieldsRepository.findById(id).orElseThrow(FieldNotFoundException::new);
+        Field field = fieldRepository.findById(id).orElseThrow(FieldNotFoundException::new);
         field.updateField(fieldDto);
-        return fieldsRepository.save(field).toDto();
+        return fieldRepository.save(field).toDto();
     }
 }

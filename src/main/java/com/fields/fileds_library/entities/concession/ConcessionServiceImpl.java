@@ -1,18 +1,14 @@
-package com.fields.fileds_library.objects.concession;
+package com.fields.fileds_library.entities.concession;
 
 import com.fields.fileds_library.exceptions.CompanyNotFoundException;
 import com.fields.fileds_library.exceptions.ConcessionNotFoundException;
 import com.fields.fileds_library.exceptions.FieldNotFoundException;
-import com.fields.fileds_library.model.CompanyDto;
 import com.fields.fileds_library.model.ConcessionDto;
-import com.fields.fileds_library.objects.company.Company;
-import com.fields.fileds_library.objects.company.CompanyRepository;
-import com.fields.fileds_library.objects.field.Field;
-import com.fields.fileds_library.objects.field.FieldsRepository;
+import com.fields.fileds_library.entities.company.CompanyRepository;
+import com.fields.fileds_library.entities.field.FieldRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,10 +18,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ConcessionServiceImpl implements ConcessionService {
 
-    ConcessionRepository concessionRepository;
-    CompanyRepository companyRepository;
-    FieldsRepository fieldsRepository;
-
+    private final ConcessionRepository concessionRepository;
+    private final CompanyRepository companyRepository;
+    private final FieldRepository fieldRepository;
 
     @Override
     public ConcessionDto createConcession(ConcessionDto concessionDto) {
@@ -37,7 +32,7 @@ public class ConcessionServiceImpl implements ConcessionService {
                         .map(o -> companyRepository.findCompanyByCompanyName(o).orElseThrow(CompanyNotFoundException::new))
                         .collect(Collectors.toList()))
                 .fields(concessionDto.getFields().stream()
-                        .map(f -> fieldsRepository.findFieldByFieldName(f).orElseThrow(FieldNotFoundException::new))
+                        .map(f -> fieldRepository.findFieldByFieldName(f).orElseThrow(FieldNotFoundException::new))
                         .collect(Collectors.toList()))
                 .build();
         return concessionRepository.save(concession).toDto();
@@ -49,11 +44,12 @@ public class ConcessionServiceImpl implements ConcessionService {
 
     }
 
-//    @Override
-//    public List<ConcessionDto> findAllConcession(String companyName) {
-//
-//        return null;
-//    }
+    @Override
+    public List<ConcessionDto> findAllConcession(String companyName) {
+        return concessionRepository.findAllConcessions(companyName).stream()
+                .map(Concession::toDto)
+                .collect(Collectors.toList());
+    }
 
     @Override
     public Optional<ConcessionDto> findConcessionById(UUID id) {
@@ -66,7 +62,7 @@ public class ConcessionServiceImpl implements ConcessionService {
                 .updateConcession(concessionDto.getOwners().stream()
                                 .map(o -> companyRepository.findCompanyByCompanyName(o).orElseThrow(CompanyNotFoundException::new))
                                 .collect(Collectors.toList()), concessionDto.getFields().stream()
-                                .map(f -> fieldsRepository.findFieldByFieldName(f).orElseThrow(FieldNotFoundException::new))
+                                .map(f -> fieldRepository.findFieldByFieldName(f).orElseThrow(FieldNotFoundException::new))
                                 .collect(Collectors.toList()), concessionDto);
         return concessionRepository.save(concession).toDto();
     }

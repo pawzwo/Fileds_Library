@@ -1,4 +1,4 @@
-package com.fields.fileds_library.objects.field;
+package com.fields.fileds_library.entities.field;
 
 import com.fields.fileds_library.model.FieldDto;
 import com.fields.fileds_library.model.HCtype;

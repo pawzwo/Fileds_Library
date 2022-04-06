@@ -1,4 +1,4 @@
-package com.fields.fileds_library.objects.company;
+package com.fields.fileds_library.entities.company;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface CompanyRepository extends JpaRepository<Company, UUID> {
 
     @Query("SELECT c FROM Company c WHERE (:companyName is null or c.companyName= :companyName)")
-    List<Company> findAllByCompanyName(String companyName);
+    List<Company> findAllCompanies(String companyName);
 
     @Query("SELECT c FROM Company c WHERE c.companyName= :companyName")
     Optional<Company> findCompanyByCompanyName(String companyName);

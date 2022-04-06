@@ -1,10 +1,9 @@
-package com.fields.fileds_library.objects.company;
+package com.fields.fileds_library.entities.company;
 
 import com.fields.fileds_library.api.CompaniesApi;
 import com.fields.fileds_library.exceptions.CompanyNotFoundException;
 import com.fields.fileds_library.model.CompanyDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 

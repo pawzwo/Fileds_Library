@@ -1,4 +1,4 @@
-package com.fields.fileds_library.objects.company;
+package com.fields.fileds_library.entities.company;
 
 import com.fields.fileds_library.model.CompanyDto;
 

@@ -1,4 +1,4 @@
-package com.fields.fileds_library.objects.user;
+package com.fields.fileds_library.entities.user;
 
 import com.fields.fileds_library.model.UserDto;
 

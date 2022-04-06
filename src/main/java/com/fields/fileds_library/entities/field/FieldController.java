@@ -1,4 +1,4 @@
-package com.fields.fileds_library.objects.field;
+package com.fields.fileds_library.entities.field;
 
 import com.fields.fileds_library.api.FieldsApi;
 import com.fields.fileds_library.exceptions.FieldNotFoundException;
@@ -15,7 +15,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class FieldController implements FieldsApi {
 
-    FieldService fieldService;
+    private final FieldService fieldService;
 
     @Override
     public ResponseEntity<FieldDto> createField(FieldDto fieldDto) {
@@ -29,9 +29,8 @@ public class FieldController implements FieldsApi {
     }
 
     @Override
-    //ToDo
     public ResponseEntity<List<FieldDto>> findAllFields(HCtype hydrocarbons) {
-        return FieldsApi.super.findAllFields(hydrocarbons);
+        return ResponseEntity.ok(fieldService.findAllFields(hydrocarbons));
     }
 
     @Override

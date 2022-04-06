@@ -1,9 +1,8 @@
-package com.fields.fileds_library.objects;
+package com.fields.fileds_library.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -14,6 +13,7 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @MappedSuperclass
+@AllArgsConstructor
 public abstract class ProtoEntity {
 
     @Id
