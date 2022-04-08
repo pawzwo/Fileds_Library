@@ -3,6 +3,7 @@ package com.fields.fileds_library.entities;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -10,6 +11,7 @@ import javax.persistence.Version;
 import java.util.Objects;
 import java.util.UUID;
 
+@Audited
 @Getter
 @NoArgsConstructor
 @MappedSuperclass

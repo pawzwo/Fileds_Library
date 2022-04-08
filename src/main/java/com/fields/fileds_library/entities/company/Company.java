@@ -4,12 +4,14 @@ package com.fields.fileds_library.entities.company;
 import com.fields.fileds_library.model.CompanyDto;
 import com.fields.fileds_library.entities.ProtoEntity;
 import lombok.*;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+@Audited
 @Entity
-@Table(name = "owner")
+@Table(name = "owners")
 @Getter
 @NoArgsConstructor
 @Builder

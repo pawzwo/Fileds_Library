@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -12,7 +13,7 @@ import java.util.UUID;
 public interface FieldRepository extends JpaRepository<Field, UUID> {
 
     @Query("SELECT f FROM Field f JOIN f.hydrocarbons h WHERE (:hydrocarbons IS NULL OR h = :hydrocarbons)")
-    Optional<Field> findAllFields(HCtype hydrocarbons);
+    List<Field> findAllFields(HCtype hydrocarbons);
 
     @Query("SELECT f FROM Field f WHERE f.fieldName = :fieldName")
     Optional<Field> findFieldByFieldName(String fieldName);

@@ -7,10 +7,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Audited
 @Entity
 @Table(name = "fields")
 @Getter
@@ -20,11 +22,11 @@ import java.util.List;
 public class Field extends ProtoEntity {
 
     private String fieldName;
-    @Column(name="oilMMbbl")
+    @Column(name="oil_MMbbl")
     private Double reservesOil;
-    @Column(name = "gasBcf")
+    @Column(name = "gas_Bcf")
     private Double reservesGas;
-    @Column(name = "condensateMMbbl")
+    @Column(name = "condensate_MMbbl")
     private Double reservesCondensate;
 
     @ElementCollection(fetch = FetchType.EAGER)

@@ -32,7 +32,7 @@ public class CompanyServiceImpl implements CompanyService{
 
     @Override
     public List<CompanyDto> findAllCompanies(String companyName) {
-        return companyRepository.findAll().stream()
+        return companyRepository.findAllCompanies(companyName).stream()
                 .map(Company::toDto)
                 .collect(Collectors.toList());
     }

@@ -7,11 +7,13 @@ import com.fields.fileds_library.entities.field.Field;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Audited
 @Entity
 @Table(name = "concessions")
 @Getter
@@ -22,7 +24,7 @@ public class Concession extends ProtoEntity {
     private String concessionName;
     private String concessionDescription;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "concession_owner", joinColumns = @JoinColumn(name = "concession_id"),
+    @JoinTable(name = "concessions_owners", joinColumns = @JoinColumn(name = "concession_id"),
             inverseJoinColumns = @JoinColumn(name = "owner_id"))
     private List<Company> owners;
     @OneToMany
@@ -32,7 +34,9 @@ public class Concession extends ProtoEntity {
         ConcessionDto concessionDto = new ConcessionDto();
         concessionDto.setId(this.getId());
         concessionDto.setConcessionName(this.getConcessionName());
+        concessionDto.setConcessionDescription(this.getConcessionDescription());
         concessionDto.setOwners(this.getOwners().stream().map(Company::getCompanyName).collect(Collectors.toList()));
+        concessionDto.setFields(this.getFields().stream().map(Field::getFieldName).collect(Collectors.toList()));
         return concessionDto;
     }
 
