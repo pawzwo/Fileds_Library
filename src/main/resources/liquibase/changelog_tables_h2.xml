@@ -15,9 +15,9 @@
             <column name="rev" type="integer" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="revtstmp" type="bigint"/>
-<!--            <column name="user_name" type="varchar(255)"/>-->
-<!--            <column name="modified_at" type="timestamp"/>-->
+            <column name="timestamp" type="bigint"/>
+            <column name="user_name" type="varchar(255)"/>
+            <column name="modified_at" type="timestamp"/>
         </createTable>
 
         <!--Companie/Owners-->

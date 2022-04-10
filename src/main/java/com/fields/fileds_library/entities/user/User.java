@@ -3,10 +3,7 @@ package com.fields.fileds_library.entities.user;
 import com.fields.fileds_library.model.Role;
 import com.fields.fileds_library.model.UserDto;
 import com.fields.fileds_library.entities.ProtoEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
