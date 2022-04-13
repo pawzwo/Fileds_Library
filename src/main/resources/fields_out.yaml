@@ -624,7 +624,7 @@ components:
         jwtToken:
           type: string
 
-    #Concession Response Schema
+    #User Response Schema
     UserDto:
       description: User Dto
       type: object

@@ -6,6 +6,7 @@
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd" >
 
     <changeSet author="pawel" id="1">
+        <createSequence sequenceName="hibernate_sequence"/>
 
         <!--Enverse-->
         <createTable tableName="revinfo">
@@ -20,7 +21,7 @@
             <column name="modified_at" type="timestamp"/>
         </createTable>
 
-        <!--Companie/Owners-->
+        <!--Companies/Owners-->
         <createTable tableName="owners">
             <column name="id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
@@ -72,9 +73,7 @@
         <createTable tableName="concessions_fields_aud">
             <column name="concession_id" type="uuid"/>
             <column name="fields_id" type="uuid"/>
-            <column name="rev" type="integer">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
+            <column name="rev" type="integer"/>
             <column name="revtype" type="tinyint"/>
         </createTable>
 
@@ -87,9 +86,7 @@
         <createTable tableName="concessions_owners_aud">
             <column name="concession_id" type="uuid"/>
             <column name="owner_id" type="uuid"/>
-            <column name="rev" type="integer">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
+            <column name="rev" type="integer"/>
             <column name="revtype" type="tinyint"/>
         </createTable>
 

@@ -20,7 +20,7 @@
             <column name="modified_at" type="timestamp"/>
         </createTable>
 
-        <!--Companie/Owners-->
+        <!--Companies/Owners-->
         <createTable tableName="owners">
             <column name="id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
@@ -73,7 +73,6 @@
             <column name="concession_id" type="uuid"/>
             <column name="fields_id" type="uuid"/>
             <column name="rev" type="integer">
-                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="revtype" type="smallint"/>
         </createTable>
