@@ -1,7 +1,7 @@
 package com.fields.fileds_library;
 
-import com.fields.fileds_library.entities.user.User;
-import com.fields.fileds_library.entities.user.UserRepository;
+import com.fields.fileds_library.domain.user.User;
+import com.fields.fileds_library.domain.user.UserRepository;
 import com.fields.fileds_library.model.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;

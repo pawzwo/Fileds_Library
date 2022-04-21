@@ -1,14 +1,13 @@
 package com.fields.fileds_library.exceptions
 
-import com.fields.fileds_library.entities.company.Company
-import com.fields.fileds_library.entities.company.CompanyController
-import com.fields.fileds_library.entities.company.CompanyRepository
-import com.fields.fileds_library.entities.company.CompanyService
-import com.fields.fileds_library.entities.concession.Concession
-import com.fields.fileds_library.entities.concession.ConcessionController
-import com.fields.fileds_library.entities.concession.ConcessionRepository
-import com.fields.fileds_library.entities.field.Field
-import com.fields.fileds_library.entities.field.FieldRepository
+import com.fields.fileds_library.domain.company.Company
+import com.fields.fileds_library.domain.company.CompanyController
+import com.fields.fileds_library.domain.company.CompanyRepository
+import com.fields.fileds_library.domain.concession.Concession
+import com.fields.fileds_library.domain.concession.ConcessionController
+import com.fields.fileds_library.domain.concession.ConcessionRepository
+import com.fields.fileds_library.domain.field.Field
+import com.fields.fileds_library.domain.field.FieldRepository
 import com.fields.fileds_library.model.CompanyDto
 import com.fields.fileds_library.model.ConcessionDto
 import com.fields.fileds_library.model.HCtype

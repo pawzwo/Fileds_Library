@@ -1,8 +1,8 @@
 package com.fields.fileds_library.exceptions
 
-import com.fields.fileds_library.entities.user.User
-import com.fields.fileds_library.entities.user.UserController
-import com.fields.fileds_library.entities.user.UserRepository
+import com.fields.fileds_library.domain.user.User
+import com.fields.fileds_library.domain.user.UserController
+import com.fields.fileds_library.domain.user.UserRepository
 import com.fields.fileds_library.model.Role
 import com.fields.fileds_library.model.UserDto
 import org.springframework.beans.factory.annotation.Autowired

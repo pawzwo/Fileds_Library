@@ -87,6 +87,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   /users/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
     #GET REQUEST
     get:
       summary: User by id get request
@@ -94,13 +101,6 @@ paths:
         - "User"
       description: find User by id
       operationId: findUserById
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
       responses:
         200:
           description: OK
@@ -121,13 +121,6 @@ paths:
         - "User"
       description: update User
       operationId: updateUser
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
       requestBody:
         required: true
         content:
@@ -154,13 +147,6 @@ paths:
         - "User"
       description: delete User
       operationId: deleteUser
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
       responses:
         200:
           description: User deleted
@@ -227,6 +213,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   /fields/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
     #GET REQUEST
     get:
       summary: Field by id get request
@@ -234,13 +227,6 @@ paths:
         - "Fields"
       description: find Field by id
       operationId: findFieldById
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
       responses:
         200:
           description: OK
@@ -258,16 +244,9 @@ paths:
     put:
       summary: update Field
       tags:
-        - "Companies"
+        - "Fields"
       description: update Field
       operationId: updateField
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
       requestBody:
         required: true
         content:
@@ -291,19 +270,40 @@ paths:
     delete:
       summary: delete Field
       tags:
-        - "Companies"
+        - "Fields"
       description: delete Field
       operationId: deleteField
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
       responses:
         200:
           description: Field deleted
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /productionentries:
+    #POST REQUEST
+    post:
+      summary: Add daily production
+      tags:
+        - "Production_Entry"
+      description: Add daily production
+      operationId: addProduction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductionEntryDto'
+      responses:
+        200:
+          description: Production Entry Added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyReportDto'
         default:
           description: error
           content:
@@ -367,6 +367,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   /companies/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
     #GET REQUEST
     get:
       summary: Company by id get request
@@ -374,13 +381,6 @@ paths:
         - "Companies"
       description: find project by id
       operationId: findCompanyById
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
       responses:
         200:
           description: OK
@@ -401,13 +401,6 @@ paths:
         - "Companies"
       description: update company
       operationId: updateCompany
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
       requestBody:
         required: true
         content:
@@ -434,13 +427,6 @@ paths:
         - "Companies"
       description: delete company
       operationId: deleteCompany
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
       responses:
         200:
           description: Company deleted
@@ -507,6 +493,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   /concessions/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
     #GET REQUEST
     get:
       summary: Concession by id get request
@@ -514,13 +507,6 @@ paths:
         - "Concessions"
       description: find concession by id
       operationId: findConcessionById
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
       responses:
         200:
           description: OK
@@ -541,13 +527,6 @@ paths:
         - "Concessions"
       description: update concession
       operationId: updateConcession
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
       requestBody:
         required: true
         content:
@@ -574,13 +553,6 @@ paths:
         - "Concessions"
       description: delete concession
       operationId: deleteConcession
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
       responses:
         200:
           description: Concession deleted
@@ -592,6 +564,7 @@ paths:
                 $ref: '#/components/schemas/Error'
 
 components:
+
   schemas:
     #Error
     Error:
@@ -624,7 +597,7 @@ components:
         jwtToken:
           type: string
 
-    #User Response Schema
+    #User Schema
     UserDto:
       description: User Dto
       type: object
@@ -643,7 +616,7 @@ components:
           items:
             $ref: '#/components/schemas/Role'
 
-    #Field Response Schema
+    #Field Schema
     FieldDto:
       description: Field Dto
       type: object
@@ -667,7 +640,7 @@ components:
           items:
             $ref: '#/components/schemas/HCtype'
 
-    #Company Response Schema
+    #Company Schema
     CompanyDto:
       description: Company Dto
       type: object
@@ -678,7 +651,7 @@ components:
         companyName:
           type: string
 
-    #Concession Response Schema
+    #Concession Schema
     ConcessionDto:
       description: Concession Dto
       type: object
@@ -698,6 +671,53 @@ components:
           type: array
           items:
             type: string
+
+    #Daily_Report Schema
+    DailyReportDto:
+      description: Daily Production Report Dto
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        concessionName:
+          type: string
+        owners:
+          type: array
+          items:
+            type: string
+        fieldName:
+          type: string
+        hydrocarbons:
+          type: array
+          items:
+            $ref: '#/components/schemas/HCtype'
+        producedOilBbl:
+          type: number
+          format: double
+        producedGasMMcf:
+          type: number
+          format: double
+        producedCondensateBbl:
+          type: number
+          format: double
+
+    #Production Entry Schema
+    ProductionEntryDto:
+      description: Daily Production Entry Dto
+      type: object
+      properties:
+        fieldName:
+          type: string
+        producedOilBbl:
+          type: number
+          format: double
+        producedGasMMcf:
+          type: number
+          format: double
+        producedCondensateBbl:
+          type: number
+          format: double
 
     #Enum
     HCtype:
