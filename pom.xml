@@ -187,8 +187,8 @@
                                 ${project.basedir}/src/main//resources/fields_out.yaml
                             </inputSpec>
                             <generatorName>spring</generatorName>
-                            <apiPackage>com.fields.fileds_library.api</apiPackage>
-                            <modelPackage>com.fields.fileds_library.model</modelPackage>
+                            <apiPackage>com.fields.fields_library.api</apiPackage>
+                            <modelPackage>com.fields.fields_library.model</modelPackage>
                             <supportingFilesToGenerate>
                                 ApiUtil.java
                             </supportingFilesToGenerate>
