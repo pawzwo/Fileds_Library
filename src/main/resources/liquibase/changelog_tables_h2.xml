@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd" >
+
+    <changeSet author="pawel" id="1">
+        <createSequence sequenceName="hibernate_sequence"/>
+
+        <!--Enverse-->
+        <createTable tableName="revinfo">
+            <column name="id" type="integer" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="rev" type="integer" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="timestamp" type="bigint"/>
+            <column name="user_name" type="varchar(255)"/>
+            <column name="modified_at" type="timestamp"/>
+        </createTable>
+
+        <!--Companies/Owners-->
+        <createTable tableName="owners">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="version" type="integer8"/>
+            <column name="company_name" type="varchar(255)"/>
+        </createTable>
+
+        <createTable tableName="owners_aud">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="company_name" type="varchar(255)"/>
+            <column name="rev" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="revtype" type="tinyint"/>
+        </createTable>
+
+        <!--Concessions-->
+        <createTable tableName="concessions">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="version" type="integer8"/>
+            <column name="concession_name" type="varchar(255)"/>
+            <column name="concession_description" type="varchar(255)"/>
+        </createTable>
+
+        <createTable tableName="concessions_aud">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="version" type="integer8"/>
+            <column name="concession_name" type="varchar(255)"/>
+            <column name="concession_description" type="varchar(255)"/>
+            <column name="rev" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="revtype" type="tinyint"/>
+        </createTable>
+
+        <!--Concessions_Fields-->
+        <createTable tableName="concessions_fields">
+            <column name="concession_id" type="uuid"/>
+            <column name="fields_id" type="uuid"/>
+        </createTable>
+
+        <createTable tableName="concessions_fields_aud">
+            <column name="concession_id" type="uuid"/>
+            <column name="fields_id" type="uuid"/>
+            <column name="rev" type="integer"/>
+            <column name="revtype" type="tinyint"/>
+        </createTable>
+
+        <!--Concessions_Owners-->
+        <createTable tableName="concessions_owners">
+            <column name="concession_id" type="uuid"/>
+            <column name="owner_id" type="uuid"/>
+        </createTable>
+
+        <createTable tableName="concessions_owners_aud">
+            <column name="concession_id" type="uuid"/>
+            <column name="owner_id" type="uuid"/>
+            <column name="rev" type="integer"/>
+            <column name="revtype" type="tinyint"/>
+        </createTable>
+
+        <!--Fields-->
+        <createTable tableName="fields">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="version" type="integer8"/>
+            <column name="field_name" type="varchar(255)"/>
+            <column name="oil_mmbbl" type="double"/>
+            <column name="gas_bcf" type="double"/>
+            <column name="condensate_mmbbl" type="double"/>
+        </createTable>
+
+        <createTable tableName="fields_aud">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="version" type="integer8"/>
+            <column name="field_name" type="varchar(255)"/>
+            <column name="oil_mmbbl" type="double"/>
+            <column name="gas_bcf" type="double"/>
+            <column name="condensate_mmbbl" type="double"/>
+            <column name="rev" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="revtype" type="tinyint"/>
+        </createTable>
+
+        <!--Fields_Hydrocarbons-->
+        <createTable tableName="field_hydrocarbons">
+            <column name="field_id" type="uuid"/>
+            <column name="hydrocarbons" type="varchar(255)"/>
+        </createTable>
+
+        <createTable tableName="field_hydrocarbons_aud">
+            <column name="field_id" type="uuid"/>
+            <column name="hydrocarbons" type="varchar(255)"/>
+            <column name="rev" type="integer"/>
+            <column name="revtype" type="tinyint"/>
+        </createTable>
+
+        <!--Users-->
+        <createTable tableName="users">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="version" type="int8"/>
+            <column name="email" type="varchar(255)"/>
+            <column name="user_name" type="varchar(255)"/>
+            <column name="password" type="varchar(255)"/>
+        </createTable>
+
+        <createTable tableName="users_aud">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="version" type="int8"/>
+            <column name="email" type="varchar(255)"/>
+            <column name="user_name" type="varchar(255)"/>
+            <column name="password" type="varchar(255)"/>
+            <column name="rev" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="revtype" type="tinyint"/>
+        </createTable>
+
+        <!--User_Roles-->
+        <createTable tableName="user_roles">
+            <column name="user_id" type="uuid"/>
+            <column name="roles" type="varchar(255)"/>
+        </createTable>
+
+        <createTable tableName="user_roles_aud">
+            <column name="user_id" type="uuid"/>
+            <column name="roles" type="varchar(255)"/>
+            <column name="rev" type="integer"/>
+            <column name="revtype" type="tinyint"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="user_roles"
+                                 onDelete="CASCADE"
+                                 constraintName="fk_user_roles_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+
+        <addForeignKeyConstraint baseColumnNames="field_id"
+                                 baseTableName="field_hydrocarbons"
+                                 onDelete="CASCADE"
+                                 constraintName="fk_field_hydrocarbons_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fields"/>
+
+<!--        <addForeignKeyConstraint baseColumnNames="owner_id"-->
+<!--                                 baseTableName="concessions"-->
+<!--                                 onDelete="CASCADE"-->
+<!--                                 constraintName="fk_concessions_owners_id"-->
+<!--                                 referencedColumnNames="id"-->
+<!--                                 referencedTableName="projects"/>-->
+
+<!--        <addForeignKeyConstraint baseColumnNames="task_id"-->
+<!--                                 baseTableName="time_entries"-->
+<!--                                 onDelete="CASCADE"-->
+<!--                                 constraintName="fk_time_entries_task_id"-->
+<!--                                 referencedColumnNames="id"-->
+<!--                                 referencedTableName="tasks"/>-->
+
+<!--        <addForeignKeyConstraint baseColumnNames="employee_id"-->
+<!--                                 baseTableName="time_entries"-->
+<!--                                 onDelete="CASCADE"-->
+<!--                                 constraintName="fk_time_entries_employee_id"-->
+<!--                                 referencedColumnNames="id"-->
+<!--                                 referencedTableName="users"/>-->
+    </changeSet>
+</databaseChangeLog>
+

@@ -1,0 +1,716 @@
+openapi: 3.0.3
+info:
+  title: Fields_Library_out
+  description: External end points
+  version: 1.0.0
+
+paths:
+  /login:
+    post:
+      tags:
+        - "Login"
+      summary: login post
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JwtRequest'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JwtResponse'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /users:
+    #GET REQUEST
+    get:
+      summary: Users get request
+      tags:
+        - "Users"
+      description: find all Users with/without param
+      operationId: findAllUsers
+      parameters:
+        - name: userName
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+    #Post request
+    post:
+      summary: Users post request
+      tags:
+        - "Users"
+      description: create a User
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+      responses:
+        201:
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users/{id}:
+    #GET REQUEST
+    get:
+      summary: User by id get request
+      tags:
+        - "User"
+      description: find User by id
+      operationId: findUserById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+    #PUT REQUEST
+    put:
+      summary: update User
+      tags:
+        - "User"
+      description: update User
+      operationId: updateUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+      responses:
+        200:
+          description: User updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+    #DELETE REQUEST
+    delete:
+      summary: delete User
+      tags:
+        - "User"
+      description: delete User
+      operationId: deleteUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: User deleted
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /fields:
+    #GET REQUEST
+    get:
+      summary: Fields get request
+      tags:
+        - "Fields"
+      description: find all Fields with/without param
+      operationId: findAllFields
+      parameters:
+        - name: hydrocarbons
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/HCtype'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FieldDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+    #Post request
+    post:
+      summary: Fields post request
+      tags:
+        - "Fields"
+      description: create a Field
+      operationId: createField
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FieldDto'
+      responses:
+        201:
+          description: Field created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FieldDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /fields/{id}:
+    #GET REQUEST
+    get:
+      summary: Field by id get request
+      tags:
+        - "Fields"
+      description: find Field by id
+      operationId: findFieldById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FieldDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+    #PUT REQUEST
+    put:
+      summary: update Field
+      tags:
+        - "Companies"
+      description: update Field
+      operationId: updateField
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FieldDto'
+      responses:
+        200:
+          description: Field updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FieldDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+    #DELETE REQUEST
+    delete:
+      summary: delete Field
+      tags:
+        - "Companies"
+      description: delete Field
+      operationId: deleteField
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Field deleted
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /companies:
+    #GET REQUEST
+    get:
+      summary: Companies get request
+      tags:
+        - "Companies"
+      description: find all Companies with/without param
+      operationId: findAllCompanies
+      parameters:
+        - name: companyName
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+    #Post request
+    post:
+      summary: Companies post request
+      tags:
+        - "Companies"
+      description: create a company
+      operationId: createCompany
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyDto'
+      responses:
+        201:
+          description: Company created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /companies/{id}:
+    #GET REQUEST
+    get:
+      summary: Company by id get request
+      tags:
+        - "Companies"
+      description: find project by id
+      operationId: findCompanyById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+    #PUT REQUEST
+    put:
+      summary: update company
+      tags:
+        - "Companies"
+      description: update company
+      operationId: updateCompany
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyDto'
+      responses:
+        200:
+          description: Company updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+    #DELETE REQUEST
+    delete:
+      summary: delete company
+      tags:
+        - "Companies"
+      description: delete company
+      operationId: deleteCompany
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Company deleted
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /concessions:
+    #GET REQUEST
+    get:
+      summary: Concessions get request
+      tags:
+        - "Concessions"
+      description: find all Concessions with/without params
+      operationId: findAllConcessions
+      parameters:
+        - name: companyName
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConcessionDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+    #Post request
+    post:
+      summary: Concessions post request
+      tags:
+        - "Concessions"
+      description: create a concessions
+      operationId: createConcession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConcessionDto'
+      responses:
+        201:
+          description: Concession created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConcessionDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /concessions/{id}:
+    #GET REQUEST
+    get:
+      summary: Concession by id get request
+      tags:
+        - "Concessions"
+      description: find concession by id
+      operationId: findConcessionById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConcessionDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+    #PUT REQUEST
+    put:
+      summary: update concession
+      tags:
+        - "Concessions"
+      description: update concession
+      operationId: updateConcession
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConcessionDto'
+      responses:
+        200:
+          description: Concession updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConcessionDto'
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+    #DELETE REQUEST
+    delete:
+      summary: delete concession
+      tags:
+        - "Concessions"
+      description: delete concession
+      operationId: deleteConcession
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Concession deleted
+        default:
+          description: error
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    #Error
+    Error:
+      type: object
+      required:
+        - message
+        - code
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+          minimum: 100
+          maximum: 600
+
+    #Jwt
+    JwtRequest:
+      description: credentials
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+
+    JwtResponse:
+      description: credentials
+      type: object
+      properties:
+        jwtToken:
+          type: string
+
+    #User Response Schema
+    UserDto:
+      description: User Dto
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        userName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+
+    #Field Response Schema
+    FieldDto:
+      description: Field Dto
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        fieldName:
+          type: string
+        reservesOil:
+          type: number
+          format: double
+        reservesGas:
+          type: number
+          format: double
+        reservesCondensate:
+          type: number
+          format: double
+        hydrocarbons:
+          type: array
+          items:
+            $ref: '#/components/schemas/HCtype'
+
+    #Company Response Schema
+    CompanyDto:
+      description: Company Dto
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyName:
+          type: string
+
+    #Concession Response Schema
+    ConcessionDto:
+      description: Concession Dto
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        concessionName:
+          type: string
+        concessionDescription:
+          type: string
+        owners:
+          type: array
+          items:
+            type: string
+        fields:
+          type: array
+          items:
+            type: string
+
+    #Enum
+    HCtype:
+      description: type of hydrocarbons
+      type: string
+      enum:
+        - OIL
+        - GAS
+        - CONDENSATE
+
+    Role:
+      description: security role
+      type: string
+      enum:
+        - USER
+        - ADMIN
